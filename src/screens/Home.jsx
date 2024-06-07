@@ -1,11 +1,19 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, useWindowDimensions } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import Categories from '../components/Categories'
 
 const Home = () => {
+  const {width, height} = useWindowDimensions()
+  const [orientation, setOrientation] = useState('portrait')
+  
+  useEffect(() => {
+    if(width > height) setOrientation('landscape')
+      else setOrientation('portrait') 
+  }, [width])
+
   return (
-    <View style={{flex: 1, width: '90%', marginTop: 44,}} >
+    <View style={(orientation === 'portrait') ? styles.containerHome : styles.containerHomeLandscape} >
       <Header title='Categorias' />
       <Categories />
     </View>
@@ -14,4 +22,19 @@ const Home = () => {
 
 export default Home
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  containerHome: {
+    flex: 1, 
+    width: '90%', 
+    marginTop: '14%',
+  },
+  containerHomeLandscape: {
+    flex: 1, 
+    width: '90%', 
+    marginTop: '5%',
+  },
+
+
+
+
+})

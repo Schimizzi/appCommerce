@@ -4,7 +4,7 @@ import CategoriesItem from './CategoriesItem'
 
 const Categories = () => {
   return (
-    <View style={{flex: 9, marginTop: 5}} >
+    <View style={{flex: 20}} >
       <FlatList
         data={categoriesJSON}
         renderItem={({ item }) =>
